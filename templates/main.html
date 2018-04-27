@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{{ super() }}
+{% block content %}
+    <div class="row main-content">
+        <div class="col-sm-3 categories-sidebar">
+            <h2>Genres:</h2>
+            {% for gen in genres %}
+            <a href="{{url_for('show_genre',genre_id=gen.id)}}">{{gen.name}}</a>
+            <br>
+            {% endfor %}
+            <h3>New Movie</h3>
+            {% if genre %}
+                <a href="{{url_for('new_title', genre_id=genre.id)}}">Add Movie</a>
+            {% else %}
+                <a href="{{url_for('new_title')}}">Add Movie</a>
+            {% endif %}
+        </div>
+        <div class="col-sm-9 content-space">
+            {% block body %}
+            {% endblock %}
+
+        </div>
+    </div>
+{#     <h2>Genres:</h2>
+    {% for gen in genres %}
+    <a href="{{url_for('show_genre',genre_id=gen.id)}}">{{gen.name}}</a>
+    <br>
+    {% endfor %}
+    <br>
+
+    <h2>New title</h2>
+    {% if genre %}
+        <a href="{{url_for('new_title', genre_id=genre.id)}}">Add</a>
+    {% else %}
+        <a href="{{url_for('new_title')}}">Add</a>
+    {% endif %}
+    <br>
+    <br>
+
+    {% block body %}
+    {% endblock %} #}
+
+{% endblock %}

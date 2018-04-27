@@ -1,0 +1,8 @@
+{% extends 'main.html' %}
+{% block body %}
+    <h2>{{genre.name}} Movies:</h2>
+    {% for title in titles %}
+    <a href="{{url_for('show_title', genre_id=title.genre.id, title_id=title.id)}}">{{title.name}}</a>
+    <br>
+    {% endfor %}
+{% endblock %}

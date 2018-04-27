@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Edit Title</h2>
+
+    <form action="{{url_for('edit_title', genre_id=genre_id, title_id=title_id)}}" method="POST">
+        <p>Name:</p>
+        <input type="text" size="30" name="name" value="{{input_name}}">
+        <br>
+        <p>Plo:</p>
+        <input type="text" size="50" name="plot" value="{{input_plot}}">
+        <br>
+        <p>Genre:</p>
+        <select name="genre">
+            {% if not default_gen %}
+                <option selected="selected" {# disabled="disabled"  #}value="None">Select a genre</option>
+            {% endif %}
+            {% for gen in genres %}
+                {% if gen.name == default_gen %}
+                    <option selected="selected" value="{{gen.name}}">{{gen.name}}</option>
+                {% else %}
+                    <option value="{{gen.name}}">{{gen.name}}</option>
+                {% endif %}
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <input type="submit" value="Edit">
+    </form>
+
+{% endblock %}
